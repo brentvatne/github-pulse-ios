@@ -1,13 +1,14 @@
 'use strict';
 
-import React, { StyleSheet, Text, View, Image, Component, TextInput, } from 'react-native';
+import styles from './ProfileStyles';
+import React, { StyleSheet, Text, View, Image, Component, TextInput, PixelRatio, } from 'react-native';
 import { Blue, Grey, } from '../Colours';
 import { Main, Accent, } from '../Fonts';
 import GithubApi from '../GithubApi';
 import { Contributions, } from 'NativeModules';
+import ContributionsChart from './ContributionsChart';
 
 export default class Profile extends Component {
-
   constructor(props) {
     super(props)
 
@@ -52,59 +53,6 @@ export default class Profile extends Component {
     let { avatarUrl, name, followers, following, publicRepos,
           commits, streak, today, } = this.state;
 
-    const styles = StyleSheet.create({
-      container: {
-        paddingTop: 30,
-      },
-      avatar: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-      },
-      headerImage: {
-        padding: 10,
-        paddingLeft: 15,
-      },
-      header: {
-        flexDirection: 'row',
-      },
-      headerText: {
-        flexDirection: 'column',
-      },
-      fullName: {
-        fontFamily: Main,
-        fontSize: 26,
-        color: Blue,
-        fontWeight: 'bold',
-        letterSpacing: -1,
-        marginTop: 8,
-      },
-      username: {
-        fontFamily: Main,
-        fontSize: 17,
-        color: Grey,
-        fontWeight: 'normal',
-        marginTop: -5,
-      },
-      stats: {
-        flexDirection: 'row',
-      },
-      stat: {
-        flexDirection: 'column',
-        flex: 1,
-        alignItems: 'center',
-      },
-      number: {
-        fontFamily: Accent,
-        fontSize: 32,
-        color: Blue,
-      },
-      description: {
-        fontFamily: Main,
-        color: Grey,
-      }
-    });
-
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -116,6 +64,8 @@ export default class Profile extends Component {
             <Text style={styles.username}>@{this.props.username}</Text>
           </View>
         </View>
+
+        <ContributionsChart commits={this.state.commits} />
 
         <View style={styles.stats}>
           <View style={styles.stat}>
@@ -130,12 +80,12 @@ export default class Profile extends Component {
 
           <View style={styles.stat}>
             <Text style={styles.number}>{streak}</Text>
-            <Text style={styles.description}>streak</Text>
+            <Text style={styles.description}>days streak</Text>
           </View>
 
           <View style={styles.stat}>
             <Text style={styles.number}>{today}</Text>
-            <Text style={styles.description}>today</Text>
+            <Text style={styles.description}>commits today</Text>
           </View>
         </View>
       </View>
