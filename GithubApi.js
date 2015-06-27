@@ -1,10 +1,9 @@
-import { GithubClientId, GithubClientSecret, } from 'Credentials';
+import { GithubClientId, GithubClientSecret, } from './Credentials';
 
 export default class GithubApi {
-
   static baseUrl = 'https://api.github.com';
-  static clientId = GithubClientId || '';
-  static clientSecret = GithubClientSecret || '';
+  static clientId = GithubClientId;
+  static clientSecret = GithubClientSecret;
 
   static urlFor(path) {
     let { baseUrl, clientId, clientSecret, } = GithubApi;
@@ -28,5 +27,4 @@ export default class GithubApi {
 
     return JSON.parse(response._bodyText);;
   }
-
 }
