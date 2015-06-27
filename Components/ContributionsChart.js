@@ -2,27 +2,37 @@
 
 import React, { Component, View, } from 'react-native';
 import { Main, Accent, } from '../Fonts';
-import { Blue, } from '../Colours';
+import { Blue, Grey } from '../Colours';
 import ReactART, { Surface, Group, Shape, } from 'ReactNativeART';
 import Circle from './Circle';
+import Path from 'paths-js/path';
 import SmoothLine from 'paths-js/smooth-line';
 import Dimensions from 'Dimensions';
 
 const DeviceWidth = Dimensions.get('window').width;
+const innerHeight = 160;
+const innerWidth = DeviceWidth - 40;
 
 export default class ContributionsChart extends Component {
-  static defaultProps = { commits: [] }
+  _renderGrid() {
+    const underline = Path().moveto(0, innerHeight).lineto(innerWidth, innerHeight);
+    const leftline = Path().moveto(0, 0).lineto(0, innerHeight);
+
+    return (
+      <Group x={20} y={10}>
+        <Shape d={underline.print()} strokeWidth={1} stroke='rgba(0,0,0,0.1)' />
+        <Shape d={leftline.print()} strokeWidth={1} stroke='rgba(0,0,0,0.1)' />
+      </Group>
+    )
+  }
 
   render() {
-    if (!this.props.commits.length) {
-      return <View />;
-    }
-
-    const points = this.props.commits.map((i, commits) => [commits, i]);
+    const commits = this.props.commits.length ? this.props.commits : [0,0,0];
+    const points = commits.map((i, commits) => [commits, i]);
     const chart = SmoothLine({
       data: [points],
-      width: DeviceWidth - 40,
-      height: 160,
+      width: innerWidth,
+      height: innerHeight,
       closed: false
     });
 
@@ -38,6 +48,7 @@ export default class ContributionsChart extends Component {
 
     return (
       <Surface width={DeviceWidth} height={180}>
+        {this._renderGrid()}
         <Group x={20} y={10}>
           {line}
           {area}

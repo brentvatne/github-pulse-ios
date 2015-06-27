@@ -7,9 +7,9 @@ export default styles = StyleSheet.create({
     paddingTop: 30,
   },
   avatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 55,
+    height: 55,
+    borderRadius: 55 / 2,
   },
   headerImage: {
     padding: 10,
