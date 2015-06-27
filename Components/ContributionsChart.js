@@ -18,22 +18,19 @@ export default class ContributionsChart extends Component {
       return <View />;
     }
 
-    let points = this.props.commits.map((i, commits) => {
-      return [commits, i];
-    });
-
-    let chart = SmoothLine({
+    const points = this.props.commits.map((i, commits) => [commits, i]);
+    const chart = SmoothLine({
       data: [points],
       width: DeviceWidth - 40,
       height: 160,
       closed: false
     });
 
-    let line = <Shape d={ chart.curves[0].line.path.print() } stroke={Blue} />
-    let area = <Shape d={ chart.curves[0].area.path.print() } opacity={0.2}  fill={Blue} />
-    let circles = chart.curves[0].line.path.points().map((p) => {
+    const line = <Shape d={chart.curves[0].line.path.print()} stroke={Blue} />
+    const area = <Shape d={chart.curves[0].area.path.print()} opacity={0.2} fill={Blue} />
+    const circles = chart.curves[0].line.path.points().map(([x, y]) => {
       return (
-        <Group x={p[0]} y={p[1]}>
+        <Group x={x} y={y}>
           <Circle radius={5} fill={Blue} strokeWidth={2} stroke="#ffffff" />
         </Group>
       )
