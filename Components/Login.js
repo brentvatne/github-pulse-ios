@@ -10,10 +10,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flex: 1,
-    marginTop: 90,
+    marginTop: 80,
   },
   titleText: {
-    fontSize: 36,
+    fontSize: 44,
+    letterSpacing: -1,
     fontWeight: 'bold',
     fontFamily: Main,
   },
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Grey,
     marginHorizontal: 30,
-    marginTop: 15,
+    marginTop: 20,
     marginBottom: 20,
   },
   zenTip: {
@@ -47,14 +48,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   footer: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    marginBottom: 50,
+    marginTop: 10,
   }
 });
 
-class Login extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -69,8 +68,12 @@ class Login extends Component {
     });
   }
 
-  handleSubmit() {
+  _handleSubmit() {
+    this.props.navigator.replace({id: 'profile', username: this.state.username});
+  }
 
+  _updateUsername(username) {
+    this.setState({username})
   }
 
   render() {
@@ -83,9 +86,10 @@ class Login extends Component {
         <TextInput
           returnKeyType='go'
           enablesReturnKeyAutomatically={true}
-          onSubmitEditing={this._handleSubmit}
+          onSubmitEditing={this._handleSubmit.bind(this)}
           style={styles.usernameInput}
-          placeholder="Enter your Github username" />
+          placeholder="Enter your Github username"
+          onChangeText={this._updateUsername.bind(this)} />
         <View style={styles.footer}>
           <Text style={styles.zenTip}>{this.state.zen || ' '}</Text>
           <Text style={styles.zenAttribution}>{this.state.zen ? 'api.github.com/zen' : ' '}</Text>
@@ -94,5 +98,3 @@ class Login extends Component {
     )
   }
 }
-
-module.exports = Login;

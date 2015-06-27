@@ -3,6 +3,7 @@
 import regenerator from 'regenerator/runtime';
 import React, { AppRegistry, StyleSheet, Text, View, Component, Navigator } from 'react-native';
 import Login from './Components/Login';
+import Profile from './Components/Profile';
 
 const DefaultRoute = { id: 'login', };
 
@@ -13,9 +14,9 @@ class GithubPulse extends Component {
 
   renderScene(route, navigator) {
     if (route.id === 'login') {
-      return <Login />;
+      return <Login navigator={navigator} />;
     } else {
-      return <View />;
+      return <Profile navigator={navigator} username={route.username} />;
     }
   }
 
