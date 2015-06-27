@@ -31,6 +31,7 @@
 		CE178AAB1B3E422500FEC78E /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE178AA51B3E421D00FEC78E /* OpenSans-Semibold.ttf */; };
 		CE178AB11B3E54CA00FEC78E /* Contributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE178AAF1B3E54CA00FEC78E /* Contributions.swift */; };
 		CE178AB21B3E54CA00FEC78E /* ContributionsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = CE178AB01B3E54CA00FEC78E /* ContributionsBridge.m */; };
+		CE7CDD0B1B3F29590030BF28 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CDD001B3F22280030BF28 /* libART.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		CE7CDCFF1B3F22280030BF28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE7CDCFB1B3F22280030BF28 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +152,7 @@
 		CE178AAC1B3E54A700FEC78E /* GithubPulse-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GithubPulse-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE178AAF1B3E54CA00FEC78E /* Contributions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contributions.swift; path = iOS/Contributions.swift; sourceTree = "<group>"; };
 		CE178AB01B3E54CA00FEC78E /* ContributionsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContributionsBridge.m; path = iOS/ContributionsBridge.m; sourceTree = "<group>"; };
+		CE7CDCFB1B3F22280030BF28 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "node_modules/react-native/React/../Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7CDD0B1B3F29590030BF28 /* libART.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -284,6 +294,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CE7CDCFB1B3F22280030BF28 /* ART.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -338,6 +349,14 @@
 				CE178AA51B3E421D00FEC78E /* OpenSans-Semibold.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		CE7CDCFC1B3F22280030BF28 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE7CDD001B3F22280030BF28 /* libART.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +424,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = CE7CDCFC1B3F22280030BF28 /* Products */;
+					ProjectRef = CE7CDCFB1B3F22280030BF28 /* ART.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -523,6 +546,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE7CDD001B3F22280030BF28 /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = CE7CDCFF1B3F22280030BF28 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

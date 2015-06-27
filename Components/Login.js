@@ -4,6 +4,7 @@ import React, { StyleSheet, Text, View, Image, Component, TextInput, } from 'rea
 import { Blue, Grey, } from '../Colours';
 import { Main, Accent, } from '../Fonts';
 import GithubApi from '../GithubApi';
+import LineChart from './LineChart';
 
 const styles = StyleSheet.create({
   container: {
@@ -90,6 +91,9 @@ export default class Login extends Component {
           style={styles.usernameInput}
           placeholder="Enter your Github username"
           onChangeText={this._updateUsername.bind(this)} />
+
+        <LineChart />
+
         <View style={styles.footer}>
           <Text style={styles.zenTip}>{this.state.zen || ' '}</Text>
           <Text style={styles.zenAttribution}>{this.state.zen ? 'api.github.com/zen' : ' '}</Text>

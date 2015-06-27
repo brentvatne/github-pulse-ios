@@ -6,7 +6,10 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
+    "art": "^0.10.0",
+    "paths-js": "^0.3.4",
     "react-native": "^0.7.0-rc.2",
+    "react-timer-mixin": "^0.13.1",
     "regenerator": "^0.8.31"
   }
 }
