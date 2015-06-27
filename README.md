@@ -14,4 +14,4 @@ unauthenticated (you might get rate limited though).
 ## WIP Screenshots
 
 <a href="http://url.brentvatne.ca/1joK5.png"><img src="http://url.brentvatne.ca/1joK5.png" width="350"></a>
-<a href="http://url.brentvatne.ca/1kx8c.png"><img src="http://url.brentvatne.ca/1kx8c.png" width="350"></a>
+<a href="http://url.brentvatne.ca/1gif2.png"><img src="http://url.brentvatne.ca/1gif2.png" width="350"></a>
