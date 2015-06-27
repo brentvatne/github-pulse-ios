@@ -1,4 +1,3 @@
-// CalendarManagerBridge.m
 #import "RCTBridgeModule.h"
 
 @interface RCT_EXTERN_MODULE(Contributions, NSObject)
