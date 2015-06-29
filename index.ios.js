@@ -5,6 +5,8 @@ import React, { AppRegistry, StyleSheet, Text, View, Component, Navigator } from
 import Login from './Components/Login';
 import Profile from './Components/Profile';
 
+console.yellowBoxEnabled = true;
+
 const DefaultRoute = { id: 'login', };
 
 class GithubPulse extends Component {
