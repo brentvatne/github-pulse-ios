@@ -3,8 +3,9 @@
 import React, { Component, View, PanResponder, } from 'react-native';
 import { Main, Accent, } from '../Fonts';
 import { Blue, Grey } from '../Colours';
-import ReactART, { Surface, Group, Shape, } from 'ReactNativeART';
+import ReactART, { Surface, Group, Shape, Text, Transform, } from 'ReactNativeART';
 import Circle from './Circle';
+import Rectangle from './Rectangle';
 import Path from 'paths-js/path';
 import SmoothLine from 'paths-js/smooth-line';
 import Dimensions from 'Dimensions';
@@ -101,12 +102,27 @@ export default class ContributionsChart extends Component {
     const line = <Shape d={chart.curves[0].line.path.print()} stroke={Blue} />
     const area = <Shape d={chart.curves[0].area.path.print()} opacity={0.2} fill={Blue} />
     const points = chart.curves[0].line.path.points();
+    let selectedBubble;
 
     const circles = points.map(([x, y], i) => {
       let fillColor = Blue;
       let strokeColor = '#fff';
+
       if (this._isTouchingPoint(this.state.touchX, i, points)) {
         [strokeColor, fillColor] = [fillColor, strokeColor];
+        selectedBubble = (
+         <Group x={x} y={y}>
+            <Group y={-20} x={0} transform={new Transform().rotate(45)}>
+              <Rectangle width={12} height={12} fill="#191919" />
+            </Group>
+            <Group y={-40} x={-15}>
+              <Rectangle width={30} height={30} radius={5} fill="#191919" />
+            </Group>
+            <Group y={-32} x={0}>
+              <Text font="Helvetica" stroke="white" alignment="center">{this.props.commits[i].toString()}</Text>
+            </Group>
+          </Group>
+        )
       }
 
       return (
@@ -124,6 +140,7 @@ export default class ContributionsChart extends Component {
             {line}
             {area}
             {circles}
+            {selectedBubble}
           </Group>
         </Surface>
       </View>
