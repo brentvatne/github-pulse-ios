@@ -15,7 +15,7 @@ class GithubPulse extends Component {
   }
 
   renderScene(route, navigator) {
-    return <Profile navigator={navigator} username={'brentvatne'} />;
+    // return <Profile navigator={navigator} username={'brentvatne'} />;
     if (route.id === 'login') {
       return <Login navigator={navigator} />;
     } else {
