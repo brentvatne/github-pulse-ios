@@ -65,7 +65,7 @@ export default class Profile extends Component {
           </View>
         </View>
 
-        <ContributionsChart commits={this.state.commits} />
+        <ContributionsChart data={this.state.commits} />
 
         <View style={styles.stats}>
           <View style={styles.stat}>

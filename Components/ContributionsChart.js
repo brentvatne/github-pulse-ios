@@ -3,22 +3,25 @@
 import React, { Component, View, PanResponder, } from 'react-native';
 import { Main, Accent, } from '../Fonts';
 import { Blue, Grey } from '../Colours';
-import ReactART, { Surface, Group, Shape, Text, Transform, } from 'ReactNativeART';
+import ReactART, { Surface, Group, Shape, Text, Transform, ClippingRectangle, } from 'ReactNativeART';
 import ChartTooltip from './ChartTooltip';
 import Circle from './Circle';
 import Rectangle from './Rectangle';
 import Path from 'paths-js/path';
 import SmoothLine from 'paths-js/smooth-line';
 import Dimensions from 'Dimensions';
+import makeAnimated from './makeAnimated';
 
 const DeviceWidth = Dimensions.get('window').width;
 const innerHeight = 160;
 const innerWidth = DeviceWidth - 40;
 const leftMargin = 20;
 
+@makeAnimated
 export default class ContributionsChart extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       touchX: null
     }
@@ -59,7 +62,7 @@ export default class ContributionsChart extends Component {
   }
 
   _isTouchingPoint(x, currentPointIndex, allPoints) {
-    if (!x) {
+    if (!x && x !== 0) {
       return false;
     }
 
@@ -91,18 +94,27 @@ export default class ContributionsChart extends Component {
   }
 
   render() {
-    const commits = this.props.commits.length ? this.props.commits : [0,0,0];
-    const data = commits.map((i, commits) => [commits, i]);
-    const chart = SmoothLine({
+    if (!this.props.data || this.props.data.length === 0) {
+      return <View style={{width: DeviceWidth, height: 180}} />
+    }
+    let commits = this.props.data;
+    let data = commits.map((i, commits) => [commits, i]);
+    let chart = SmoothLine({
       data: [data],
       width: innerWidth,
       height: innerHeight,
       closed: false
     });
 
-    const line = <Shape d={chart.curves[0].line.path.print()} stroke={Blue} />
-    const area = <Shape d={chart.curves[0].area.path.print()} opacity={0.2} fill={Blue} />
-    const points = chart.curves[0].line.path.points();
+    let line = (
+      <Shape d={chart.curves[0].line.path.print()}
+             strokeWidth={2}
+             stroke={Blue} />
+    )
+    let area = (
+      <Shape d={chart.curves[0].area.path.print()} opacity={0.2} fill={Blue} />
+    )
+    let points = chart.curves[0].line.path.points();
     let tooltip = null;
 
     const circles = points.map(([x, y], i) => {
@@ -113,13 +125,13 @@ export default class ContributionsChart extends Component {
         [strokeColor, fillColor] = [fillColor, strokeColor];
         tooltip = (
           <ChartTooltip x={x} y={y} inverted={y <= 30}>
-            {this.props.commits[i].toString()}
+            {parseInt(this.props.data[i]).toString()}
           </ChartTooltip>
         )
       }
 
       return (
-        <Group x={x} y={y} key={x.toString() + ' ' + y.toString()}>
+        <Group x={x} y={(y + 20) - (20 * this.props.scale)} key={x.toString() + ' ' + y.toString()}>
           <Circle radius={5} fill={fillColor} strokeWidth={2} stroke={strokeColor} />
         </Group>
       )
@@ -130,9 +142,13 @@ export default class ContributionsChart extends Component {
         <Surface width={DeviceWidth} height={180}>
           {this._renderGrid()}
           <Group x={leftMargin} y={10}>
-            {line}
-            {area}
-            {circles}
+            <Group transform={Transform().translate(0, innerHeight - innerHeight * this.props.scale).scale(1, this.props.scale)}>
+              {line}
+              {area}
+            </Group>
+            <Group opacity={1.0 * this.props.scale + 0.5}>
+              {circles}
+            </Group>
             {tooltip}
           </Group>
         </Surface>
