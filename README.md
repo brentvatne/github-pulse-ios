@@ -15,3 +15,10 @@ unauthenticated (you might get rate limited though).
 
 <a href="http://url.brentvatne.ca/1joK5.png"><img src="http://url.brentvatne.ca/1joK5.png" width="350"></a>
 <a href="http://url.brentvatne.ca/1gif2.png"><img src="http://url.brentvatne.ca/1gif2.png" width="350"></a>
+
+## TODO
+
+- [ ] Save details to local storage, reload on open
+- [ ] Update to most recent version
+- [ ] Push notifications if not commited?
+- [ ] Animate graph line drawing
